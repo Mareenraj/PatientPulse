@@ -1,5 +1,7 @@
 package com.mareen.patientservice.exception;
 
+import com.mareen.patientservice.exception.custom.EmailAlreadyExistsException;
+import com.mareen.patientservice.exception.custom.PatientIdNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,6 +32,16 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = new HashMap<>();
 
         errors.put("message: ", exception.getMessage());
+
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(PatientIdNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientIdNotFoundException(PatientIdNotFoundException exception) {
+
+        Map<String, String> errors = new HashMap<>();
+
+        errors.put("message: ", "Patient not found!");
 
         return ResponseEntity.badRequest().body(errors);
     }

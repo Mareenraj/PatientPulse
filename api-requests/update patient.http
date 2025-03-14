@@ -1,13 +1,10 @@
-### GET request to example server
-POST http://localhost:7000/patient/create
+PUT http://localhost:7000/patient/update/123e4567-e89b-12d3-a456-426614174000
 Content-Type: application/json
 
 {
   "name": "mareenraj",
-  "email": "marenraj7v2@gmail.com",
+  "email": "mareenraj7v2@gmail.com",
   "address": "st, peters road, Navaly south, Manipay, Jaffna.",
   "dateOfBirth": "1999-08-07",
   "registeredDate": "2099-08-07"
 }
-
-###

@@ -32,13 +32,13 @@ public class PatientController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<PatientResponseDto> updatePatient(@PathVariable("id") String id, @Validated({Default.class}) @RequestBody PatientRequestDto patientRequestDto) {
-        return ResponseEntity.ok().body(patientService.updatePatient(UUID.fromString(id), patientRequestDto));
+    public ResponseEntity<PatientResponseDto> updatePatient(@PathVariable("id") UUID id, @Validated({Default.class}) @RequestBody PatientRequestDto patientRequestDto) {
+        return ResponseEntity.ok().body(patientService.updatePatient(id, patientRequestDto));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable("id") String id) {
-        patientService.deletePatient(UUID.fromString(id));
+    public ResponseEntity<Void> deletePatient(@PathVariable("id") UUID id) {
+        patientService.deletePatient(id);
         return ResponseEntity.noContent().build();
     }
 }

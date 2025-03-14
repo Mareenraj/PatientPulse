@@ -2,6 +2,7 @@ package com.mareen.patientservice.service;
 
 import com.mareen.patientservice.dto.PatientRequestDto;
 import com.mareen.patientservice.dto.PatientResponseDto;
+import com.mareen.patientservice.exception.EmailAlreadyExistsException;
 import com.mareen.patientservice.mapper.PatientMapper;
 import com.mareen.patientservice.model.Patient;
 import com.mareen.patientservice.repository.PatientRepository;
@@ -27,6 +28,9 @@ public class PatientService {
     }
 
     public PatientResponseDto create(PatientRequestDto patientRequestDto){
+        if(patientRepository.existsByEmail(patientRequestDto.getEmail())){
+            throw new EmailAlreadyExistsException("A patient with this email already exists: " + patientRequestDto.getEmail());
+        }
         Patient newPatient = patientRepository.save(patientMapper.dtoToEntity(patientRequestDto));
         return patientMapper.entityToDto(newPatient);
     }

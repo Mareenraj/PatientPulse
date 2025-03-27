@@ -1,6 +1,7 @@
 package com.mareen.patientservice.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
